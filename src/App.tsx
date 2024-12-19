@@ -1,12 +1,15 @@
-import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import NavBar from './components/NavBar';
+
 function App() {
 	return (
-		<div>
-			<Button disabled>
-				<Loader2 className='animate-spin' />
-				Please wait
-			</Button>
+		<div className='wrapper'>
+			<NavBar></NavBar>
+			<aside className='aside'>
+				<h2>Aside</h2>
+			</aside>
+			<main className='main'>
+				<h2>Main</h2>
+			</main>
 		</div>
 	);
 }
