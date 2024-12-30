@@ -23,6 +23,7 @@
 		"noUncheckedSideEffectImports": true,
 
 		/* Shadcn */
+		"forceConsistentCasingInFileNames": true,
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]

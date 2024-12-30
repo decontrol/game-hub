@@ -2,48 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.wrapper {
-	display: grid;
-	width: 100vw;
-	grid-template-areas:
-		'nav'
-		'main';
-
-	grid-template-rows: 60px 1fr;
-	grid-template-columns: 1fr;
-}
-
-@media only screen and (min-width: 1024px) {
-	.wrapper {
-		grid-template-areas:
-			'nav    nav'
-			'aside  main';
-		grid-template-rows: 50px 1fr;
-		grid-template-columns: 1fr 1fr;
-	}
-}
-
-.nav {
-	grid-area: nav;
-}
-
-.aside {
-	grid-area: aside;
-	background-color: yellow;
-	display: none;
-}
-
-@media only screen and (min-width: 1024px) {
-	.aside {
-		display: block;
-	}
-}
-
-.main {
-	grid-area: main;
-	background-color: blue;
-}
-
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -176,4 +134,46 @@ button:focus-visible {
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+.wrapper {
+	display: grid;
+	width: 100vw;
+	grid-template-areas:
+		'nav'
+		'main';
+
+	grid-template-rows: 60px 1fr;
+	grid-template-columns: 1fr;
+}
+
+@media only screen and (min-width: 1024px) {
+	.wrapper {
+		grid-template-areas:
+			'nav    nav'
+			'aside  main';
+		grid-template-rows: 50px 1fr;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.nav {
+	grid-area: nav;
+}
+
+.aside {
+	grid-area: aside;
+	background-color: yellow;
+	display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+	.aside {
+		display: block;
+	}
+}
+
+.main {
+	grid-area: main;
+	background-color: blue;
 }
