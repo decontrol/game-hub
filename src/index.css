@@ -58,23 +58,10 @@ button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
-}
-
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 240 10% 3.9%;
+		--background: #fff;
+		--foreground: #000;
 		--card: 0 0% 100%;
 		--card-foreground: 240 10% 3.9%;
 		--popover: 0 0% 100%;
@@ -99,9 +86,10 @@ button:focus-visible {
 		--chart-5: 27 87% 67%;
 		--radius: 0.5rem;
 	}
+
 	.dark {
-		--background: 240 10% 3.9%;
-		--foreground: 0 0% 98%;
+		--background: #333;
+		--foreground: #fff;
 		--card: 240 10% 3.9%;
 		--card-foreground: 0 0% 98%;
 		--popover: 240 10% 3.9%;
