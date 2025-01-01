@@ -3,7 +3,7 @@ import { Skeleton } from './ui/skeleton';
 const PokemonCardSkeleton = () => {
 	return (
 		<>
-			<div className='w-full rounded-lg overflow-hidden shadow-lg bg-card'>
+			<div className='w-full'>
 				<Skeleton className='w-full h-full' />
 				<div className='px-6 py-4'>
 					<Skeleton className='mb-2' />
