@@ -1,4 +1,4 @@
-import logo from '../assets/logo.webp';
+import logo from '../assets/pokemon.png';
 
 interface NavBarProps {
 	handleClick: () => void;
@@ -8,8 +8,10 @@ interface NavBarProps {
 const NavBar = ({ handleClick, darkMode }: NavBarProps) => {
 	return (
 		<nav className='nav flex justify-between items-center'>
-			<img width='50' src={logo} alt='' />
-			<button className='bg-accent' onClick={handleClick}>
+			<img width='100' src={logo} alt='' />
+			<button
+				className='bg-accent border-none focus:outline-none hover:opacity-60'
+				onClick={handleClick}>
 				{darkMode ? 'Light' : 'Dark'}
 			</button>
 		</nav>
