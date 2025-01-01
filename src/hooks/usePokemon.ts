@@ -17,23 +17,29 @@ export type fetchGamesResponse = {
 const useGames = () => {
 	const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 	const [error, setError] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		const controller = new AbortController();
+		setIsLoading(true);
 		apiClient
 			.get<fetchGamesResponse>('/pokemon', { signal: controller.signal })
-			.then((res) => setPokemons(res.data.results))
+			.then((res) => {
+				setPokemons(res.data.results);
+				setIsLoading(false);
+			})
 			.catch((err) => {
 				if (err instanceof CanceledError) {
 					return;
 				}
 				setError(err.message);
+				setIsLoading(false);
 			});
 
 		return () => controller.abort();
 	}, []);
 
-	return { pokemons, error };
+	return { pokemons, error, isLoading };
 };
 
 export default useGames;

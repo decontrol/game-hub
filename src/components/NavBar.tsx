@@ -10,7 +10,7 @@ const NavBar = ({ handleClick, darkMode }: NavBarProps) => {
 		<nav className='nav flex justify-between items-center'>
 			<img width='100' src={logo} alt='' />
 			<button
-				className='bg-accent border-none focus:outline-none hover:opacity-60'
+				className='bg-accent border-none focus:outline-none hover:opacity-60 px-5 py-2 rounded-full'
 				onClick={handleClick}>
 				{darkMode ? 'Light' : 'Dark'}
 			</button>

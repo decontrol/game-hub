@@ -5,7 +5,7 @@ import PokemonGrid from './components/PokemonGrid';
 function App() {
 	const { darkMode, toggleDark } = useDarkMode();
 	return (
-		<div className='wrapper text-primary'>
+		<div className='wrapper text-primary px-3 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
 			<aside className='aside bg-yellow'>
 				<h2>Aside</h2>
