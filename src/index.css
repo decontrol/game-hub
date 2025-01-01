@@ -151,7 +151,6 @@ button:focus-visible {
 
 .aside {
 	grid-area: aside;
-	background-color: yellow;
 	display: none;
 }
 
@@ -163,5 +162,4 @@ button:focus-visible {
 
 .main {
 	grid-area: main;
-	background-color: blue;
 }

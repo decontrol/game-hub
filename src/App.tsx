@@ -1,12 +1,9 @@
-import { useState } from 'react';
+import { useDarkMode } from './hooks/useDarkMode';
 import NavBar from './components/NavBar';
+import PokemonGrid from './components/PokemonGrid';
 
 function App() {
-	const [darkMode, setDarkmode] = useState(false);
-	const toggleDark = () => {
-		setDarkmode((prev) => !prev);
-		document.documentElement.classList.toggle('dark');
-	};
+	const { darkMode, toggleDark } = useDarkMode();
 	return (
 		<div className='wrapper text-primary'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
@@ -14,7 +11,7 @@ function App() {
 				<h2>Aside</h2>
 			</aside>
 			<main className='main'>
-				<h2>Main</h2>
+				<PokemonGrid />
 			</main>
 		</div>
 	);
