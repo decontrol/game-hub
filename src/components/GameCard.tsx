@@ -1,17 +1,16 @@
-import { Pokemon } from '@/hooks/usePokemon';
-import { randomPokemonImage } from '@/lib/utils';
+import { Game } from '@/hooks/useGames';
 
-type PokemonCardProps = {
-	pokemon: Pokemon;
+type GameCardProps = {
+	game: Game;
 };
 
-const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+const GameCard = ({ game }: GameCardProps) => {
 	return (
 		<>
 			<div className='w-full'>
-				<img className='w-full' src={randomPokemonImage()} alt='Sunset in the mountains' />
+				<img className='w-full' src={game.background_image} alt='Sunset in the mountains' />
 				<div className='px-6 py-4'>
-					<div className='font-bold text-2xl mb-2'>{pokemon.name}</div>
+					<div className='font-bold text-2xl mb-2'>{game.name}</div>
 					<p className='text-primary text-base'>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
 						Maiores et perferendis eaque, exercitationem praesentium nihil.
@@ -32,4 +31,4 @@ const PokemonCard = ({ pokemon }: PokemonCardProps) => {
 		</>
 	);
 };
-export default PokemonCard;
+export default GameCard;

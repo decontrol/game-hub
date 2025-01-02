@@ -1,7 +1,7 @@
 import { useDarkMode } from './hooks/useDarkMode';
 import NavBar from './components/NavBar';
-import PokemonGrid from './components/PokemonGrid';
-import TypeList from './components/TypeList';
+import GameGrid from './components/GameGrid';
+import GenreList from './components/GenreList';
 
 function App() {
 	const { darkMode, toggleDark } = useDarkMode();
@@ -9,11 +9,11 @@ function App() {
 		<div className='wrapper text-primary px-3 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
 			<aside className='aside bg-yellow'>
-				<h2>Pokemon Types</h2>
-				<TypeList />
+				<h2>Game Types</h2>
+				<GenreList />
 			</aside>
 			<main className='main'>
-				<PokemonGrid />
+				<GameGrid />
 			</main>
 		</div>
 	);

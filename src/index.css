@@ -60,7 +60,7 @@ button:focus-visible {
 
 @layer base {
 	:root {
-		--background: #efefef;
+		--background: #ddd;
 		--foreground: #000;
 		--card: #fefefe;
 		--card-foreground: #f00;

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'https://pokeapi.co/api/v2/',
-	// params: {
-	// 	key: 'b8e9613fbb4b4012811cf99d7c2acabd',
-	// },
+	baseURL: 'https://api.rawg.io/api',
+	params: {
+		key: 'c31e26d0a9b6456889f98c5978ae29af',
+	},
 });
