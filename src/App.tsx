@@ -9,7 +9,6 @@ function App() {
 		<div className='wrapper text-primary px-3 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
 			<aside className='aside bg-yellow'>
-				<h2>Game Types</h2>
 				<GenreList />
 			</aside>
 			<main className='main'>

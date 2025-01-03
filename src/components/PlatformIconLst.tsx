@@ -24,10 +24,10 @@ const PlatformIconLst = ({ platforms }: PlatformIconListProps) => {
 	};
 	return (
 		<div className='flex'>
-			{platforms.map((platform, index) => (
-				<div key={index} className='mr-3 platform-icon'>
-					{Object.entries(iconMap).map(([key, Icon]) => {
-						if (key === platform.slug) return <Icon />;
+			{platforms.map((platform) => (
+				<div key={platform.slug} className='mr-2 platform-icon'>
+					{Object.entries(iconMap).map(([$key, Icon]) => {
+						if ($key === platform.slug) return <Icon key={$key} />;
 						return false;
 					})}
 				</div>
