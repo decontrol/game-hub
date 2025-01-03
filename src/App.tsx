@@ -6,7 +6,7 @@ import GenreList from './components/GenreList';
 function App() {
 	const { darkMode, toggleDark } = useDarkMode();
 	return (
-		<div className='wrapper text-primary px-3 py-1'>
+		<div className='wrapper text-primary pl-3 pr-5 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
 			<aside className='aside bg-yellow'>
 				<GenreList />

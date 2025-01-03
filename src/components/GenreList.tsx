@@ -1,8 +1,13 @@
 import useGenres from '@/hooks/useGenres.ts';
 import { getCroppedImageUrl } from '../lib/utils';
+import Spinner from './Spinner';
 
 const GenreList = () => {
-	const { data } = useGenres();
+	const { data, error, isLoading } = useGenres();
+
+	if (error) return null;
+
+	if (isLoading) return <Spinner />;
 
 	return (
 		<>
