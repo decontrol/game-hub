@@ -16,8 +16,9 @@ const GameCard = ({ game }: GameCardProps) => {
 					src={getCroppedImageUrl(game.background_image)}
 					alt='Sunset in the mountains'
 				/>
-				<div className='px-4 pt-4 pb-2'>
+				<div className='flexs px-4 pt-4 pb-2'>
 					<div className='font-bold text-2xl'>{game.name}</div>
+					<p>{game.genres.map((item) => item.name).join(' / ')}</p>
 				</div>
 				<div className='flex items-center justify-between px-4 pb-2'>
 					<PlatformIconLst platforms={game.parent_platforms.map((item) => item.platform)} />

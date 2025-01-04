@@ -6,10 +6,11 @@ import { Game } from '@/hooks/useGames.ts';
 import { Genre } from '@/hooks/useGenres.ts';
 type GameGridProps = {
 	selectedGenre: Genre | null;
+	selectedPlatform: number | null;
 };
 
-const GameGrid = ({ selectedGenre }: GameGridProps) => {
-	const { data, error, isLoading } = useGames(selectedGenre);
+const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
+	const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
 	return (

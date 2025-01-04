@@ -5,9 +5,10 @@ import { Button } from './ui/button';
 
 type GenreListProps = {
 	onClickEvent: (genre: Genre) => void;
+	selectedGenre?: Genre;
 };
 
-const GenreList = ({ onClickEvent }: GenreListProps) => {
+const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
 	const { data, error, isLoading } = useGenres();
 
 	if (error) return null;
@@ -28,7 +29,9 @@ const GenreList = ({ onClickEvent }: GenreListProps) => {
 						/>
 						<Button
 							onClick={() => onClickEvent(genre)}
-							className='bg-background shadow-none font-bold text-sm text-inherit px-2 py-1 h-7 hover:bg-background hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none '>
+							className={`bg-background shadow-none text-sm text-inherit px-2 py-1 h-7 hover:bg-background hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none ${
+								genre.id === selectedGenre?.id ? 'font-extrabold' : ''
+							}`}>
 							{genre.name}
 						</Button>
 					</li>
