@@ -20,7 +20,7 @@ const PlatformSelector = ({ onChangeEvent, selectedPlatform }: PlatformSelectorP
 		<>
 			<Select onValueChange={(value) => onChangeEvent(value)}>
 				<SelectTrigger className='w-[200px] -translate-y-2 bg-card border-none shadow-none text-sm text-inherit px-2 py-1 h-7 hover:bg-card hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none focus:ring-0'>
-					<SelectValue placeholder={selectedPlatform} className='h-10' />
+					<SelectValue placeholder={selectedPlatform || 'Platforms'} className='h-10' />
 				</SelectTrigger>
 				<SelectContent>
 					{data.map((platform) => (

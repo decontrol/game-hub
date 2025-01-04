@@ -5,19 +5,30 @@ import GenreList from './components/GenreList';
 import { useState } from 'react';
 import { Genre } from './hooks/useGenres';
 import PlatformSelector from './components/PlatformSelector';
+import SortSelector from './components/SortSelector';
+
+export type GameQuery = {
+	genre: Genre | null;
+	platform: string | null;
+	sortOrder: string | null;
+};
 
 function App() {
-	const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-	const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
+	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
 	const handleClick = (genre: Genre) => {
 		console.log(genre);
-		setSelectedGenre(genre);
+		setGameQuery({ ...gameQuery, genre });
 	};
 
 	const handleChange = (platform: string) => {
 		console.log(platform);
-		setSelectedPlatform(platform);
+		setGameQuery({ ...gameQuery, platform });
+	};
+
+	const handleOrderChange = (sortOrder: string) => {
+		console.log(sortOrder);
+		setGameQuery({ ...gameQuery, sortOrder });
 	};
 
 	const { darkMode, toggleDark } = useDarkMode();
@@ -25,11 +36,15 @@ function App() {
 		<div className='wrapper text-primary pl-3 pr-5 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} />
 			<aside className='aside'>
-				<GenreList onClickEvent={handleClick} selectedGenre={selectedGenre || undefined} />
+				<GenreList onClickEvent={handleClick} selectedGenre={gameQuery.genre || undefined} />
 			</aside>
 			<main className='main'>
-				<PlatformSelector selectedPlatform={selectedPlatform} onChangeEvent={handleChange} />
-				<GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform} />
+				<div className='flex gap-4 mb-2'>
+					<PlatformSelector selectedPlatform={gameQuery.platform} onChangeEvent={handleChange} />
+					<SortSelector onOrderChangeEvent={handleOrderChange} sortOrder={gameQuery.sortOrder} />
+				</div>
+
+				<GameGrid gameQuery={gameQuery} />
 			</main>
 		</div>
 	);

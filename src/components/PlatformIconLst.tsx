@@ -1,6 +1,7 @@
 import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'react-icons/fa';
 import { MdPhoneIphone } from 'react-icons/md';
 import { SiNintendo } from 'react-icons/si';
+import { SiAtari } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { Platform } from '@/hooks/useGames';
 import { IconType } from 'react-icons';
@@ -16,6 +17,7 @@ const PlatformIconLst = ({ platforms }: PlatformIconListProps) => {
 		iphone: MdPhoneIphone,
 		xbox: FaXbox,
 		ios: FaApple,
+		atari: SiAtari,
 		linux: FaLinux,
 		android: FaAndroid,
 		mac: FaApple,

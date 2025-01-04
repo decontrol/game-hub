@@ -3,14 +3,13 @@ import GameCard from './GameCard.tsx';
 import GameCardContainer from './GameCardContainer.tsx';
 import GameCardSkeleton from './GameCardSkeleton.tsx';
 import { Game } from '@/hooks/useGames.ts';
-import { Genre } from '@/hooks/useGenres.ts';
+import { GameQuery } from '@/App.tsx';
 type GameGridProps = {
-	selectedGenre: Genre | null;
-	selectedPlatform: number | null;
+	gameQuery: GameQuery;
 };
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
-	const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+	const { data, error, isLoading } = useGames(gameQuery);
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
 	return (
