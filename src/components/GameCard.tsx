@@ -21,7 +21,11 @@ const GameCard = ({ game }: GameCardProps) => {
 					<p>{game.genres.map((item) => item.name).join(' / ')}</p>
 				</div>
 				<div className='flex items-center justify-between px-4 pb-2'>
-					<PlatformIconLst platforms={game.parent_platforms.map((item) => item.platform)} />
+					<PlatformIconLst
+						platforms={
+							game.parent_platforms ? game.parent_platforms.map((item) => item.platform) : []
+						}
+					/>
 					<CriticScore score={game.metacritic} />
 				</div>
 			</div>

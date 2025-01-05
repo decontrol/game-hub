@@ -1,15 +1,18 @@
 import logo from '../assets/logo.webp';
 import { CiLight, CiDark } from 'react-icons/ci';
+import SearchInput from './SearchInput';
 
 interface NavBarProps {
 	handleClick: () => void;
-	darkMode?: boolean; // Add this prop for the dark/light mode toggle functionality.
+	darkMode?: boolean;
+	onSearch: (seasrchText: string) => void; // Add this prop for the dark/light mode toggle functionality.
 }
 
-const NavBar = ({ handleClick, darkMode }: NavBarProps) => {
+const NavBar = ({ handleClick, darkMode, onSearch }: NavBarProps) => {
 	return (
 		<nav className='nav flex justify-between items-center'>
 			<img width='50' src={logo} alt='' />
+			<SearchInput onSearch={onSearch} />
 			<button
 				className='bg-accent border-none focus:outline-none hover:opacity-60 px-3 py-1 rounded-full'
 				onClick={handleClick}>

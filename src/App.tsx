@@ -11,6 +11,7 @@ export type GameQuery = {
 	genre: Genre | null;
 	platform: string | null;
 	sortOrder: string | null;
+	searchText: string | null;
 };
 
 function App() {
@@ -31,10 +32,14 @@ function App() {
 		setGameQuery({ ...gameQuery, sortOrder });
 	};
 
+	const handleSearch = (searchText: string) => {
+		setGameQuery({ ...gameQuery, searchText });
+	};
+
 	const { darkMode, toggleDark } = useDarkMode();
 	return (
-		<div className='wrapper text-primary pl-3 pr-5 py-1'>
-			<NavBar handleClick={toggleDark} darkMode={darkMode} />
+		<div className='wrapper text-primary px-4 py-1'>
+			<NavBar handleClick={toggleDark} darkMode={darkMode} onSearch={handleSearch} />
 			<aside className='aside'>
 				<GenreList onClickEvent={handleClick} selectedGenre={gameQuery.genre || undefined} />
 			</aside>
