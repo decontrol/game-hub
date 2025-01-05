@@ -14,6 +14,7 @@ export type Game = {
 	parent_platforms: { platform: Platform }[];
 	metacritic: number;
 	genres: { id: number; name: string; slug: string }[];
+	rating_top: number;
 };
 
 const useGames = (gameQuery: GameQuery) =>

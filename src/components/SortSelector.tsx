@@ -23,7 +23,6 @@ const SortSelector = ({ onOrderChangeEvent, sortOrder }: SortSelectorProps) => {
 
 	const currentSortOrder = sortOrders.find((order) => order.value === sortOrder);
 
-	console.log(sortOrder);
 	return (
 		<>
 			<Select onValueChange={(value) => onOrderChangeEvent(value)}>

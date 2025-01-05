@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Genre } from './hooks/useGenres';
 import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 export type GameQuery = {
 	genre: Genre | null;
@@ -44,11 +45,11 @@ function App() {
 				<GenreList onClickEvent={handleClick} selectedGenre={gameQuery.genre || undefined} />
 			</aside>
 			<main className='main'>
+				<GameHeading gameQuery={gameQuery} />
 				<div className='flex gap-4 mb-2'>
 					<PlatformSelector selectedPlatform={gameQuery.platform} onChangeEvent={handleChange} />
 					<SortSelector onOrderChangeEvent={handleOrderChange} sortOrder={gameQuery.sortOrder} />
 				</div>
-
 				<GameGrid gameQuery={gameQuery} />
 			</main>
 		</div>

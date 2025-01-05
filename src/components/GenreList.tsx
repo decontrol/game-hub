@@ -17,6 +17,7 @@ const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
 
 	return (
 		<>
+			<h1 className='my-4 text-4xl font-semibold'>Genres</h1>
 			<ul className=''>
 				{data.map((genre) => (
 					<li key={genre.id} className='flex items-center text-sm pl-[7px] py-[5px]'>
