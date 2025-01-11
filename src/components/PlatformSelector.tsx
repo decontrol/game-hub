@@ -14,6 +14,7 @@ type PlatformSelectorProps = {
 
 const PlatformSelector = ({ onChangeEvent, selectedPlatform }: PlatformSelectorProps) => {
 	const { data, error } = usePlatforms();
+	// console.log(data);
 
 	if (error) return null;
 	return (
@@ -23,7 +24,7 @@ const PlatformSelector = ({ onChangeEvent, selectedPlatform }: PlatformSelectorP
 					<SelectValue placeholder={selectedPlatform || 'Platforms'} className='h-10' />
 				</SelectTrigger>
 				<SelectContent>
-					{data.map((platform) => (
+					{data?.results.map((platform) => (
 						<SelectItem key={platform.id} value={'' + platform.id}>
 							{platform.name}
 						</SelectItem>

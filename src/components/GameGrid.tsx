@@ -10,9 +10,10 @@ type GameGridProps = {
 
 const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const { data, error, isLoading } = useGames(gameQuery);
+	console.log(data);
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
-	if (error) return <p>{error}</p>;
+	if (error) return <p>{error.message}</p>;
 
 	return (
 		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
@@ -22,9 +23,9 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 						<GameCardSkeleton />
 					</GameCardContainer>
 				))}
-			{data.map((item, i) => (
+			{data?.results.map((item, i) => (
 				<GameCardContainer key={i}>
-					<GameCard game={item as Game} />
+					<GameCard game={item as unknown as Game} />
 				</GameCardContainer>
 			))}
 		</div>

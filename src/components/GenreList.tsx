@@ -9,17 +9,19 @@ type GenreListProps = {
 };
 
 const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
-	const { data, error, isLoading } = useGenres();
+	const { data, error, isFetching } = useGenres();
+
+	//console.log(data);
 
 	if (error) return null;
 
-	if (isLoading) return <Spinner />;
+	if (isFetching) return <Spinner />;
 
 	return (
 		<>
 			<h1 className='my-4 text-4xl font-semibold'>Genres</h1>
 			<ul className=''>
-				{data.map((genre) => (
+				{data?.results.map((genre) => (
 					<li key={genre.id} className='flex items-center text-sm pl-[7px] py-[5px]'>
 						<img
 							src={getCroppedImageUrl(genre.image_background)}
