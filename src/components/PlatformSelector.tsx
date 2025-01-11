@@ -5,7 +5,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import usePlatforms from '@/hooks/usePlatforms';
+import usePlatforms, { Platform } from '@/hooks/usePlatforms';
 
 type PlatformSelectorProps = {
 	onChangeEvent: (platform: string) => void;
@@ -14,7 +14,7 @@ type PlatformSelectorProps = {
 
 const PlatformSelector = ({ onChangeEvent, selectedPlatform }: PlatformSelectorProps) => {
 	const { data, error } = usePlatforms();
-	// console.log(data);
+	// console.log(data.results);
 
 	if (error) return null;
 	return (
@@ -24,7 +24,7 @@ const PlatformSelector = ({ onChangeEvent, selectedPlatform }: PlatformSelectorP
 					<SelectValue placeholder={selectedPlatform || 'Platforms'} className='h-10' />
 				</SelectTrigger>
 				<SelectContent>
-					{data?.results.map((platform) => (
+					{data?.results.map((platform: Platform) => (
 						<SelectItem key={platform.id} value={'' + platform.id}>
 							{platform.name}
 						</SelectItem>

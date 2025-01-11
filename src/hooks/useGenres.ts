@@ -1,6 +1,6 @@
 import genres from '../data/genres';
 import { useQuery } from '@tanstack/react-query';
-import apiClient, { fetchDataResponse } from '@/services/api-client';
+import APIClient, { fetchDataResponse } from '@/services/api-client';
 
 export type Genre = {
 	id: number;
@@ -9,12 +9,11 @@ export type Genre = {
 	image_background: string;
 };
 
-// const useGenres = () => useData<Genre>('genres');
-// using static data instead
+const apiClient = new APIClient<Genre>('/genres');
 const useGenres = () =>
 	useQuery<fetchDataResponse<Genre>, Error>({
 		queryKey: ['genres'],
-		queryFn: () => apiClient.get<fetchDataResponse<Genre>>('/genres').then((res) => res.data),
+		queryFn: apiClient.getData,
 		staleTime: 24 * 60 * 60 * 1000, // 24 hrs
 		initialData: { count: genres.length, results: genres },
 	});
