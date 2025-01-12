@@ -29,7 +29,7 @@ const GameHeading = ({ gameQuery }: GameHeadingProps) => {
 		<>
 			<h1 className='my-4 text-4xl font-semibold'>
 				{Object.entries(platformMap).map(([key, name]) => {
-					if (key === gameQuery.platformId) return name;
+					if (key === '' + gameQuery.platformId) return name;
 					return false;
 				})}{' '}
 				{genre?.name} Games

@@ -13,7 +13,7 @@ import { useDarkMode } from './hooks/useDarkMode';
 
 export type GameQuery = {
 	genreId?: number;
-	platformId?: string;
+	platformId?: number;
 	sortOrder?: string;
 	searchText?: string;
 };
@@ -26,7 +26,7 @@ function App() {
 		setGameQuery({ ...gameQuery, genreId });
 	};
 
-	const handleChange = (platformId: string) => {
+	const handleChange = (platformId: number) => {
 		console.log(platformId);
 		setGameQuery({ ...gameQuery, platformId });
 	};

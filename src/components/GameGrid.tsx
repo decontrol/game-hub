@@ -31,7 +31,10 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
 	const fetchedGameCount =
-		data?.pages.reduce((acc: number, page: any) => acc + (page.results?.length || 0), 0) || 0;
+		data?.pages.reduce(
+			(acc: number, page: { results: Game[] }) => acc + (page.results?.length || 0),
+			0
+		) || 0;
 
 	if (error) return <p>{error.message}</p>;
 
