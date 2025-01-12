@@ -13,10 +13,6 @@ type GameGridProps = {
 	gameQuery: GameQuery;
 };
 
-type Page = {
-	results: Game[];
-};
-
 const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const pageSize = 20;
 	const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames({
