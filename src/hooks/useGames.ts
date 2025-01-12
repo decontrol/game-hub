@@ -22,7 +22,8 @@ const apiClient = new APIClient<Game>('/games');
 const useGames = (gameQuery: GameInfiniteQuery) =>
 	useInfiniteQuery<fetchDataResponse<Game>, Error>({
 		queryKey: ['games', gameQuery], // refetch gamnes every time gameQuery changes
-		queryFn: ({ pageParam = 1 }) =>
+		initialPageParam: 1,
+		queryFn: ({ pageParam }) =>
 			apiClient.getData({
 				params: {
 					genres: gameQuery.genre?.id,
