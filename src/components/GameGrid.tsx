@@ -1,11 +1,14 @@
-import useGames from '@/hooks/useGames.ts';
+import { Fragment, useEffect } from 'react';
+// import { useInView } from 'react-intersection-observer';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import GameCard from './GameCard.tsx';
 import GameCardContainer from './GameCardContainer.tsx';
 import GameCardSkeleton from './GameCardSkeleton.tsx';
 import { Game } from '@/hooks/useGames.ts';
 import { GameQuery } from '@/App.tsx';
-import { Fragment } from 'react';
-import { fetchDataResponse } from '@/services/api-client.ts';
+import useGames from '@/hooks/useGames.ts';
+import Spinner from './Spinner.tsx';
+
 type GameGridProps = {
 	gameQuery: GameQuery;
 };
@@ -16,8 +19,18 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 		...gameQuery,
 		pageSize,
 	});
-	console.log(data?.pages);
+
+	// const { ref, inView } = useInView();
+
+	// useEffect(() => {
+	// 	if (inView && hasNextPage) {
+	// 		fetchNextPage();
+	// 	}
+	// }, [inView, hasNextPage, fetchNextPage]);
+
 	const skeletons = [1, 2, 3, 4, 5, 6];
+
+	const fetchedGameCount = data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;
 
 	if (isLoading) return <p>Loading...</p>;
 
@@ -25,26 +38,34 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 
 	return (
 		<>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
-				{isLoading &&
-					skeletons.map((_, i) => (
-						<GameCardContainer key={i}>
-							<GameCardSkeleton />
-						</GameCardContainer>
-					))}
-				{data?.pages.map((page: fetchDataResponse<Game>, index: number) => (
-					<Fragment key={index}>
-						{page.results.map((game: Game, i: number) => (
+			<InfiniteScroll
+				dataLength={fetchedGameCount}
+				hasMore={!!hasNextPage}
+				next={() => fetchNextPage()}
+				loader={<Spinner />}>
+				{/* "!!" to make sure the value is boolean not undefined. Undefined will be converted to
+				boolean as false */}
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
+					{isLoading &&
+						skeletons.map((_, i) => (
 							<GameCardContainer key={i}>
-								<GameCard game={game as unknown as Game} />
+								<GameCardSkeleton />
 							</GameCardContainer>
 						))}
-					</Fragment>
-				))}
-			</div>
+					{data?.pages.map((page, index) => (
+						<Fragment key={index}>
+							{page.results.map((game: Game, i: number) => (
+								<GameCardContainer key={i}>
+									<GameCard game={game as unknown as Game} />
+								</GameCardContainer>
+							))}
+						</Fragment>
+					))}
+				</div>
+			</InfiniteScroll>
 
-			{hasNextPage && (
-				<div className='w-full flex justify-end'>
+			{/* {hasNextPage && (
+				<div className='w-full flex justify-center'>
 					<button
 						className='bg-accent border-none focus:outline-none hover:opacity-60 px-3 py-1 rounded-full my-4'
 						disabled={!hasNextPage || isFetchingNextPage}
@@ -52,7 +73,15 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 						{isFetchingNextPage ? 'Loading...' : 'Load more'}
 					</button>
 				</div>
-			)}
+			)} */}
+
+			{/* <Using react-intersection-observer */}
+
+			{/* {!isFetchingNextPage && hasNextPage && (
+				<div className='w-full flex justify-center'>
+					<Spinner />
+				</div>
+			)} */}
 		</>
 	);
 };

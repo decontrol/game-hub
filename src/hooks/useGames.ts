@@ -20,7 +20,7 @@ type GameInfiniteQuery = GameQuery & {
 const apiClient = new APIClient<Game>('/games');
 
 const useGames = (gameQuery: GameInfiniteQuery) =>
-	useInfiniteQuery<fetchDataResponse<Game>, Error[], Error>({
+	useInfiniteQuery<fetchDataResponse<Game>, Error>({
 		queryKey: ['games', gameQuery], // refetch gamnes every time gameQuery changes
 		queryFn: ({ pageParam = 1 }: { pageParam: number }) =>
 			apiClient.getData({
@@ -33,6 +33,8 @@ const useGames = (gameQuery: GameInfiniteQuery) =>
 					page_size: gameQuery.pageSize,
 				},
 			}),
+		placeholderData: (prev) => prev,
+		staleTime: 24 * 60 * 60 * 1000,
 		getNextPageParam: (lastPage, allPages) => {
 			console.log({ lastPage, allPages });
 			return lastPage.next ? allPages.length + 1 : undefined;
