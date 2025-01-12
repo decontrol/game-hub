@@ -13,6 +13,10 @@ type GameGridProps = {
 	gameQuery: GameQuery;
 };
 
+type Page = {
+	results: Game[];
+};
+
 const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const pageSize = 20;
 	const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames({
@@ -31,8 +35,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
 	const fetchedGameCount =
-		data?.pages.reduce((acc, page: { results: Game[] }) => acc + (page.results?.length || 0), 0) ||
-		0;
+		data?.pages.reduce((acc: number, page: any) => acc + (page.results?.length || 0), 0) || 0;
 
 	if (isLoading) return <p>Loading...</p>;
 
