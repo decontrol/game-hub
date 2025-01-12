@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 // import { useInView } from 'react-intersection-observer';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import GameCard from './GameCard.tsx';
@@ -15,7 +15,7 @@ type GameGridProps = {
 
 const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const pageSize = 20;
-	const { data, error, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } = useGames({
+	const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames({
 		...gameQuery,
 		pageSize,
 	});
@@ -30,7 +30,9 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 
 	const skeletons = [1, 2, 3, 4, 5, 6];
 
-	const fetchedGameCount = data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;
+	const fetchedGameCount =
+		data?.pages.reduce((acc, page: { results: Game[] }) => acc + (page.results?.length || 0), 0) ||
+		0;
 
 	if (isLoading) return <p>Loading...</p>;
 
@@ -39,7 +41,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 	return (
 		<>
 			<InfiniteScroll
-				dataLength={fetchedGameCount}
+				dataLength={fetchedGameCount as number}
 				hasMore={!!hasNextPage}
 				next={() => fetchNextPage()}
 				loader={<Spinner />}>
@@ -54,9 +56,9 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 						))}
 					{data?.pages.map((page, index) => (
 						<Fragment key={index}>
-							{page.results.map((game: Game, i: number) => (
+							{(page as { results: Game[] }).results.map((game: Game, i: number) => (
 								<GameCardContainer key={i}>
-									<GameCard game={game as unknown as Game} />
+									<GameCard game={game} />
 								</GameCardContainer>
 							))}
 						</Fragment>

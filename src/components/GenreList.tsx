@@ -21,7 +21,7 @@ const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
 		<>
 			<h1 className='my-4 text-4xl font-semibold'>Genres</h1>
 			<ul className=''>
-				{data?.results.map((genre) => (
+				{(data as { results: Genre[] })?.results.map((genre: Genre) => (
 					<li key={genre.id} className='flex items-center text-sm pl-[7px] py-[5px]'>
 						<img
 							src={getCroppedImageUrl(genre.image_background)}
