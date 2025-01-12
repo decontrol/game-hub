@@ -8,7 +8,7 @@ import {
 
 type SortSelectorProps = {
 	onOrderChangeEvent: (sortOrder: string) => void;
-	sortOrder: string | null;
+	sortOrder: string | undefined;
 };
 
 const SortSelector = ({ onOrderChangeEvent, sortOrder }: SortSelectorProps) => {

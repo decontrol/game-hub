@@ -1,10 +1,13 @@
 import { GameQuery } from '@/App';
+import useGenres from '@/hooks/useGenres';
 
 type GameHeadingProps = {
 	gameQuery: GameQuery;
 };
 
 const GameHeading = ({ gameQuery }: GameHeadingProps) => {
+	const { data: genres } = useGenres();
+	const genre = genres.results.find((genre) => genre.id === gameQuery.genreId);
 	const platformMap: { [key: number]: string } = {
 		1: 'PC',
 		2: 'PlayStation',
@@ -21,14 +24,15 @@ const GameHeading = ({ gameQuery }: GameHeadingProps) => {
 		13: 'Neo Geo',
 		14: 'Web',
 	};
+
 	return (
 		<>
 			<h1 className='my-4 text-4xl font-semibold'>
 				{Object.entries(platformMap).map(([key, name]) => {
-					if (key === gameQuery.platform) return name;
+					if (key === gameQuery.platformId) return name;
 					return false;
 				})}{' '}
-				{gameQuery.genre?.name} Games
+				{genre?.name} Games
 			</h1>
 		</>
 	);

@@ -6,26 +6,29 @@ import NavBar from './components/NavBar';
 import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
 import { useDarkMode } from './hooks/useDarkMode';
-import { Genre } from './hooks/useGenres';
+
+// undefined: the absence of value
+// null: the intentional absence of value
+// "genre: number | undefined" is the same as "genre?: number"
 
 export type GameQuery = {
-	genre: Genre | null;
-	platform: string | null;
-	sortOrder: string | null;
-	searchText: string | null;
+	genreId?: number;
+	platformId?: string;
+	sortOrder?: string;
+	searchText?: string;
 };
 
 function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
-	const handleClick = (genre: Genre) => {
-		console.log(genre);
-		setGameQuery({ ...gameQuery, genre });
+	const handleClick = (genreId: number) => {
+		console.log(genreId);
+		setGameQuery({ ...gameQuery, genreId });
 	};
 
-	const handleChange = (platform: string) => {
-		console.log(platform);
-		setGameQuery({ ...gameQuery, platform });
+	const handleChange = (platformId: string) => {
+		console.log(platformId);
+		setGameQuery({ ...gameQuery, platformId });
 	};
 
 	const handleOrderChange = (sortOrder: string) => {
@@ -42,12 +45,15 @@ function App() {
 		<div className='wrapper text-primary px-4 py-1'>
 			<NavBar handleClick={toggleDark} darkMode={darkMode} onSearch={handleSearch} />
 			<aside className='aside'>
-				<GenreList onClickEvent={handleClick} selectedGenre={gameQuery.genre || undefined} />
+				<GenreList onClickEvent={handleClick} selectedGenreId={gameQuery.genreId} />
 			</aside>
 			<main className='main'>
 				<GameHeading gameQuery={gameQuery} />
 				<div className='flex gap-4 mb-2'>
-					<PlatformSelector selectedPlatform={gameQuery.platform} onChangeEvent={handleChange} />
+					<PlatformSelector
+						selectedPlatformId={gameQuery.platformId}
+						onChangeEvent={handleChange}
+					/>
 					<SortSelector onOrderChangeEvent={handleOrderChange} sortOrder={gameQuery.sortOrder} />
 				</div>
 				<GameGrid gameQuery={gameQuery} />

@@ -33,8 +33,6 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 	const fetchedGameCount =
 		data?.pages.reduce((acc: number, page: any) => acc + (page.results?.length || 0), 0) || 0;
 
-	if (isLoading) return <p>Loading...</p>;
-
 	if (error) return <p>{error.message}</p>;
 
 	return (
@@ -53,6 +51,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 								<GameCardSkeleton />
 							</GameCardContainer>
 						))}
+
 					{data?.pages.map((page, index) => (
 						<Fragment key={index}>
 							{(page as { results: Game[] }).results.map((game: Game, i: number) => (

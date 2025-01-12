@@ -4,11 +4,11 @@ import Spinner from './Spinner';
 import { Button } from './ui/button';
 
 type GenreListProps = {
-	onClickEvent: (genre: Genre) => void;
-	selectedGenre?: Genre;
+	onClickEvent: (genre: number) => void;
+	selectedGenreId?: number;
 };
 
-const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
+const GenreList = ({ onClickEvent, selectedGenreId }: GenreListProps) => {
 	const { data, error, isFetching } = useGenres();
 
 	//console.log(data);
@@ -31,9 +31,9 @@ const GenreList = ({ onClickEvent, selectedGenre }: GenreListProps) => {
 							className='rounded-sm mr-2'
 						/>
 						<Button
-							onClick={() => onClickEvent(genre)}
+							onClick={() => onClickEvent(genre.id)}
 							className={`bg-background shadow-none text-sm text-inherit px-2 py-1 h-7 hover:bg-background hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none ${
-								genre.id === selectedGenre?.id ? 'font-extrabold' : ''
+								genre.id === selectedGenreId ? 'font-extrabold' : ''
 							}`}>
 							{genre.name}
 						</Button>
