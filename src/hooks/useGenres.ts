@@ -1,6 +1,7 @@
 import genres from '../data/genres';
 import { useQuery } from '@tanstack/react-query';
 import APIClient, { fetchDataResponse } from '@/services/api-client';
+import ms from 'ms';
 
 export type Genre = {
 	id: number;
@@ -14,7 +15,7 @@ const useGenres = () =>
 	useQuery<fetchDataResponse<Genre>, Error>({
 		queryKey: ['genres'],
 		queryFn: apiClient.getData,
-		staleTime: 24 * 60 * 60 * 1000, // 24 hrs
+		staleTime: ms('1d'), // 24 hrs
 		initialData: { count: genres.length, results: genres, next: null },
 	});
 
