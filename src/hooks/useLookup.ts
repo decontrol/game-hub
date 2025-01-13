@@ -1,7 +1,7 @@
-const useLookup = <T extends { [key: string]: any }>(
+const useLookup = <T extends { [key: string]: unknown }>(
 	items: T[],
 	propertyName: string,
-	value: any
+	value: unknown
 ) => {
 	return items.find((item) => item[propertyName] === value);
 };
