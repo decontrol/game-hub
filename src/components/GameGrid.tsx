@@ -8,6 +8,7 @@ import { Game } from '@/hooks/useGames.ts';
 import { GameQuery } from '@/App.tsx';
 import useGames from '@/hooks/useGames.ts';
 import Spinner from './Spinner.tsx';
+import { fetchDataResponse } from '@/services/api-client.ts';
 
 type GameGridProps = {
 	gameQuery: GameQuery;
@@ -32,7 +33,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 
 	const fetchedGameCount =
 		data?.pages.reduce(
-			(acc: number, page: { results: Game[] }) => acc + (page.results?.length || 0),
+			(acc: number, page: fetchDataResponse<Game>) => acc + (page.results?.length || 0),
 			0
 		) || 0;
 

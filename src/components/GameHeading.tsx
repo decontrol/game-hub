@@ -1,5 +1,6 @@
 import { GameQuery } from '@/App';
-import useGenres from '@/hooks/useGenres';
+import useGenres, { Genre } from '@/hooks/useGenres';
+import useLookup from '@/hooks/useLookup';
 
 type GameHeadingProps = {
 	gameQuery: GameQuery;
@@ -7,7 +8,7 @@ type GameHeadingProps = {
 
 const GameHeading = ({ gameQuery }: GameHeadingProps) => {
 	const { data: genres } = useGenres();
-	const genre = genres.results.find((genre) => genre.id === gameQuery.genreId);
+	const genre = useLookup<Genre>(genres?.results ?? [], 'id', gameQuery.genreId);
 	const platformMap: { [key: number]: string } = {
 		1: 'PC',
 		2: 'PlayStation',

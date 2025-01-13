@@ -5,6 +5,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
+import useLookup from '@/hooks/useLookup';
 import usePlatforms, { Platform } from '@/hooks/usePlatforms';
 
 type PlatformSelectorProps = {
@@ -13,9 +14,9 @@ type PlatformSelectorProps = {
 };
 
 const PlatformSelector = ({ onChangeEvent, selectedPlatformId }: PlatformSelectorProps) => {
-	const { data, error } = usePlatforms();
+	const { data: platforms, error } = usePlatforms();
 
-	const selectedPlatform = data?.results.find((item) => item.id === selectedPlatformId);
+	const selectedPlatform = useLookup<Platform>(platforms?.results ?? [], 'id', selectedPlatformId);
 	// console.log(data.results);
 
 	if (error) return null;
@@ -26,7 +27,7 @@ const PlatformSelector = ({ onChangeEvent, selectedPlatformId }: PlatformSelecto
 					<SelectValue placeholder={selectedPlatform?.name || 'Platforms'} className='h-10' />
 				</SelectTrigger>
 				<SelectContent>
-					{data?.results.map((platform: Platform) => (
+					{(platforms?.results ?? []).map((platform: Platform) => (
 						<SelectItem key={platform.id} value={'' + platform.id}>
 							{platform.name}
 						</SelectItem>

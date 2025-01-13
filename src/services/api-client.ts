@@ -3,8 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 export type fetchDataResponse<T> = {
 	count: number;
 	next: string | null;
-	previous: string | null;
-	results: T[];
+	results?: T[];
 };
 
 export const axiosInstance = axios.create({
