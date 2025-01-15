@@ -4,15 +4,14 @@ import SearchInput from './SearchInput';
 
 interface NavBarProps {
 	handleClick: () => void;
-	darkMode?: boolean;
-	onSearch: (seasrchText: string) => void; // Add this prop for the dark/light mode toggle functionality.
+	darkMode?: boolean; // Add this prop for the dark/light mode toggle functionality.
 }
 
-const NavBar = ({ handleClick, darkMode, onSearch }: NavBarProps) => {
+const NavBar = ({ handleClick, darkMode }: NavBarProps) => {
 	return (
 		<nav className='nav flex justify-between items-center'>
 			<img width='50' src={logo} alt='' />
-			<SearchInput onSearch={onSearch} />
+			<SearchInput />
 			<button
 				className='bg-accent border-none focus:outline-none hover:opacity-60 px-3 py-1 rounded-full'
 				onClick={handleClick}>

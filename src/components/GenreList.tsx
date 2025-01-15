@@ -2,14 +2,13 @@ import useGenres, { Genre } from '@/hooks/useGenres.ts';
 import { getCroppedImageUrl } from '../lib/utils';
 import Spinner from './Spinner';
 import { Button } from './ui/button';
+import useGameQueryStore from '@/store';
 
-type GenreListProps = {
-	onClickEvent: (genre: number) => void;
-	selectedGenreId?: number;
-};
-
-const GenreList = ({ onClickEvent, selectedGenreId }: GenreListProps) => {
+const GenreList = () => {
 	const { data, error, isFetching } = useGenres();
+
+	const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+	const setGenreId = useGameQueryStore((s) => s.setGenreId);
 
 	//console.log(data);
 
@@ -31,7 +30,7 @@ const GenreList = ({ onClickEvent, selectedGenreId }: GenreListProps) => {
 							className='rounded-sm mr-2'
 						/>
 						<Button
-							onClick={() => onClickEvent(genre.id)}
+							onClick={() => setGenreId(genre.id)}
 							className={`bg-background shadow-none text-sm text-inherit px-2 py-1 h-7 hover:bg-background hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none ${
 								genre.id === selectedGenreId ? 'font-extrabold' : ''
 							}`}>

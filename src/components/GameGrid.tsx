@@ -5,16 +5,13 @@ import GameCard from './GameCard.tsx';
 import GameCardContainer from './GameCardContainer.tsx';
 import GameCardSkeleton from './GameCardSkeleton.tsx';
 import { Game } from '@/hooks/useGames.ts';
-import { GameQuery } from '@/App.tsx';
+import useGameQueryStore from '@/store.ts';
 import useGames from '@/hooks/useGames.ts';
 import Spinner from './Spinner.tsx';
 import { fetchDataResponse } from '@/services/api-client.ts';
 
-type GameGridProps = {
-	gameQuery: GameQuery;
-};
-
-const GameGrid = ({ gameQuery }: GameGridProps) => {
+const GameGrid = () => {
+	const gameQuery = useGameQueryStore((s) => s.gameQuery);
 	const pageSize = 20;
 	const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames({
 		...gameQuery,

@@ -5,13 +5,12 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
+import useGameQueryStore from '@/store';
 
-type SortSelectorProps = {
-	onOrderChangeEvent: (sortOrder: string) => void;
-	sortOrder: string | undefined;
-};
+const SortSelector = () => {
+	const sortOrder = useGameQueryStore((s) => s.gameQuery.sortOrder);
+	const setSortOrder = useGameQueryStore((s) => s.setSortOrder);
 
-const SortSelector = ({ onOrderChangeEvent, sortOrder }: SortSelectorProps) => {
 	const sortOrders = [
 		{ value: 'relevance', label: 'Relevance' },
 		{ value: '-added', label: 'Date Added' },
@@ -25,7 +24,7 @@ const SortSelector = ({ onOrderChangeEvent, sortOrder }: SortSelectorProps) => {
 
 	return (
 		<>
-			<Select onValueChange={(value) => onOrderChangeEvent(value)}>
+			<Select onValueChange={(value) => setSortOrder(value)}>
 				<SelectTrigger className='w-[50%] max-w-[187px] -translate-y-1 bg-card border-none shadow-none text-sm text-inherit px-2 py-1 h-7 hover:bg-card hover:text-primary hover:border-none hover:shadow-none hover:border-transparent focus:outline-none focus:border-none focus:ring-0'>
 					<SelectValue
 						placeholder={`Order By : ${currentSortOrder?.label || 'Relevance'}`}

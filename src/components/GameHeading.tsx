@@ -1,14 +1,14 @@
-import { GameQuery } from '@/App';
+import useGameQueryStore from '@/store.ts';
 import useGenres, { Genre } from '@/hooks/useGenres';
 import useLookup from '@/hooks/useLookup';
 
-type GameHeadingProps = {
-	gameQuery: GameQuery;
-};
+const GameHeading = () => {
+	const genreId = useGameQueryStore((s) => s.gameQuery.genreId);
+	const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
 
-const GameHeading = ({ gameQuery }: GameHeadingProps) => {
 	const { data: genres } = useGenres();
-	const genre = useLookup<Genre>(genres?.results ?? [], 'id', gameQuery.genreId);
+	const selectedGenre = useLookup<Genre>(genres?.results ?? [], 'id', genreId);
+
 	const platformMap: { [key: number]: string } = {
 		1: 'PC',
 		2: 'PlayStation',
@@ -30,10 +30,10 @@ const GameHeading = ({ gameQuery }: GameHeadingProps) => {
 		<>
 			<h1 className='my-4 text-4xl font-semibold'>
 				{Object.entries(platformMap).map(([key, name]) => {
-					if (key === '' + gameQuery.platformId) return name;
+					if (key === '' + platformId) return name;
 					return false;
 				})}{' '}
-				{genre?.name} Games
+				{selectedGenre?.name} Games
 			</h1>
 		</>
 	);
