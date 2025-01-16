@@ -1,4 +1,4 @@
-import { Platform } from './usePlatforms';
+import { Platform } from '@/entities/Platform';
 
 export type Game = {
 	id: number;

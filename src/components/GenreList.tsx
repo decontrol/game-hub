@@ -1,4 +1,5 @@
-import useGenres, { Genre } from '@/hooks/useGenres.ts';
+import useGenres from '@/hooks/useGenres.ts';
+import { Genre } from '@/entities/Genre';
 import { getCroppedImageUrl } from '../lib/utils';
 import Spinner from './Spinner';
 import { Button } from './ui/button';
