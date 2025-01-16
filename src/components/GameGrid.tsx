@@ -57,7 +57,10 @@ const GameGrid = () => {
 						<Fragment key={index}>
 							{(page as { results: Game[] }).results.map((game: Game, i: number) => (
 								<GameCardContainer key={i}>
-									<GameCard game={game} />
+									<GameCard
+										game={game}
+										className='hover:scale-[1.03] transform-gpu transition ease-in-out duration-300'
+									/>
 								</GameCardContainer>
 							))}
 						</Fragment>

@@ -11,7 +11,7 @@ const router = createBrowserRouter([
 		element: <Layout />,
 		children: [
 			{ index: true, element: <HomePage /> }, // "path: ''" is the default path so we can just replace it with "index: true"
-			{ path: 'games/:id', element: <GameDetailPage /> },
+			{ path: 'games/:slug', element: <GameDetailPage /> },
 		],
 	},
 ]);

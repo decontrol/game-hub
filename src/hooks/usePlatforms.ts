@@ -13,7 +13,7 @@ const apiClient = new APIClient<Platform>('/platforms/lists/parents');
 const usePlatforms = () =>
 	useQuery<fetchDataResponse<Platform>, Error>({
 		queryKey: ['platforms'],
-		queryFn: apiClient.getData,
+		queryFn: apiClient.getAll,
 		staleTime: ms('1 day'),
 	});
 

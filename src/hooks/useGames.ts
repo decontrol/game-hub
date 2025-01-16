@@ -7,6 +7,7 @@ import ms from 'ms';
 export type Game = {
 	id: number;
 	name: string;
+	slug: string;
 	background_image: string;
 	parent_platforms: { platform: Platform }[];
 	metacritic: number;
@@ -25,7 +26,7 @@ const useGames = (gameQuery: GameInfiniteQuery) =>
 		queryKey: ['games', gameQuery], // refetch gamnes every time gameQuery changes
 		initialPageParam: 1,
 		queryFn: ({ pageParam }) =>
-			apiClient.getData({
+			apiClient.getAll({
 				params: {
 					genres: gameQuery.genreId,
 					parent_platforms: gameQuery.platformId,
