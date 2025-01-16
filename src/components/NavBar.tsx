@@ -1,6 +1,7 @@
 import logo from '../assets/logo.webp';
 import { CiLight, CiDark } from 'react-icons/ci';
 import SearchInput from './SearchInput';
+import { Link } from 'react-router-dom';
 
 interface NavBarProps {
 	handleClick: () => void;
@@ -10,7 +11,9 @@ interface NavBarProps {
 const NavBar = ({ handleClick, darkMode }: NavBarProps) => {
 	return (
 		<nav className='nav flex justify-between items-center'>
-			<img width='50' src={logo} alt='' />
+			<Link to='/'>
+				<img width='50' src={logo} alt='' />
+			</Link>
 			<SearchInput />
 			<button
 				className='bg-accent border-none focus:outline-none hover:opacity-60 px-3 py-1 rounded-full'
