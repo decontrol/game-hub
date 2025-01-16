@@ -1,21 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import APIClient from '@/services/api-client';
 import ms from 'ms';
+import { Game } from './Game';
 
-export type GameDetail = {
-	id: number;
-	name: string;
-	description: string;
-	description_raw: string;
-	background_image: string;
-	metacritic: number;
-	rating_top: number;
-};
-
-const apiClient = new APIClient<GameDetail>('/games');
+const apiClient = new APIClient<Game>('/games');
 
 const useGameDetail = (slug: string | undefined) =>
-	useQuery<GameDetail, Error>({
+	useQuery<Game, Error>({
 		queryKey: ['game', slug],
 		queryFn: () => apiClient.getSingle(slug!),
 		staleTime: ms('1 day'),

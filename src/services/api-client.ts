@@ -24,7 +24,7 @@ class APIClient<T> {
 		// arrow function doesnt have its own 'this' context
 		return axiosInstance.get<fetchDataResponse<T>>(this.endpoint, config).then((res) => res.data);
 	};
-	getSingle = (id: string | string) =>
+	getSingle = (id: string | number) =>
 		axiosInstance.get<T>(this.endpoint + '/' + id).then((res) => res.data);
 }
 

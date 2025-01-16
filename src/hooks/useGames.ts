@@ -1,19 +1,8 @@
 import { GameQuery } from '@/store.ts';
 import APIClient, { fetchDataResponse } from '@/services/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Platform } from './usePlatforms';
 import ms from 'ms';
-
-export type Game = {
-	id: number;
-	name: string;
-	slug: string;
-	background_image: string;
-	parent_platforms: { platform: Platform }[];
-	metacritic: number;
-	genres: { id: number; name: string; slug: string }[];
-	rating_top: number;
-};
+import { Game } from './Game';
 
 type GameInfiniteQuery = GameQuery & {
 	pageSize: number;
