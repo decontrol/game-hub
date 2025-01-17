@@ -5,13 +5,12 @@ import { useParams } from 'react-router-dom';
 import ExpandableText from '../components/ExpandableText';
 import CriticScore from '@/components/CriticScore';
 import DefinitionItem from '@/components/DefinitionItem';
+import GameTrailer from '@/components/GameTrailer';
 
 const GameDetailPage = () => {
 	const { slug } = useParams();
 
 	const { data: game, isLoading, error } = useGameDetail(slug!);
-
-	console.log(game);
 
 	if (error) throw error;
 	return (
@@ -57,6 +56,8 @@ const GameDetailPage = () => {
 							className='w-full object-cover rounded-lg'
 						/>
 						<ExpandableText>{game?.description_raw || ''}</ExpandableText>
+
+						<GameTrailer gameId={game?.id || 0} />
 					</>
 				)}
 			</main>
