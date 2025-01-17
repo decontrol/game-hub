@@ -6,7 +6,7 @@ import ExpandableText from '../components/ExpandableText';
 import CriticScore from '@/components/CriticScore';
 import DefinitionItem from '@/components/DefinitionItem';
 import GameTrailer from '@/components/GameTrailer';
-import ScreenshotList from '@/components/ScreenShotList';
+import ScreenshotList from '@/components/ScreenshotList';
 
 const GameDetailPage = () => {
 	const { slug } = useParams();
