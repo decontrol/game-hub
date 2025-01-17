@@ -6,7 +6,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 import usePlatforms from '@/hooks/usePlatforms';
-import { Platform } from '@/entities/Platform';
+import Platform from '@/entities/Platform';
 import useGameQueryStore from '@/store';
 
 const PlatformSelector = () => {

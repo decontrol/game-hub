@@ -2,7 +2,7 @@ import { GameQuery } from '@/store.ts';
 import APIClient, { fetchDataResponse } from '@/services/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ms from 'ms';
-import { Game } from '../entities/Game';
+import Game from '../entities/Game';
 
 type GameInfiniteQuery = GameQuery & {
 	pageSize: number;

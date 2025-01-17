@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import APIClient, { fetchDataResponse } from '@/services/api-client';
-import { Trailer } from '@/entities/Trailer';
+import Trailer from '@/entities/Trailer';
 import ms from 'ms';
 
 // Replace with actual API endpoint

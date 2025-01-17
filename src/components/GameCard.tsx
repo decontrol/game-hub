@@ -1,4 +1,4 @@
-import { Game } from '@/entities/Game';
+import Game from '@/entities/Game';
 import CriticScore from './CriticScore';
 import PlatformIconLst from './PlatformIconLst';
 import { getCroppedImageUrl } from '../lib/utils';

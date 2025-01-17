@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import APIClient, { fetchDataResponse } from '@/services/api-client';
-import { Screenshot } from '@/entities/Screenshot';
+import Screenshot from '@/entities/Screenshot';
 import ms from 'ms';
 
 // Replace with actual API endpoint

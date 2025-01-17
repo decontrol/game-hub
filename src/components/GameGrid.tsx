@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import GameCard from './GameCard.tsx';
 import GameCardContainer from './GameCardContainer.tsx';
 import GameCardSkeleton from './GameCardSkeleton.tsx';
-import { Game } from '@/entities/Game.ts';
+import Game from '@/entities/Game.ts';
 import useGameQueryStore from '@/store.ts';
 import useGames from '@/hooks/useGames.ts';
 import Spinner from './Spinner.tsx';

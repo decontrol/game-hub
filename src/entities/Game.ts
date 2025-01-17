@@ -1,8 +1,8 @@
-import { Platform } from '@/entities/Platform';
-import { Genre } from '@/entities/Genre';
-import { Publisher } from './Publisher';
+import Platform from '@/entities/Platform';
+import Genre from '@/entities/Genre';
+import Publisher from './Publisher';
 
-export type Game = {
+type Game = {
 	id: number;
 	name: string;
 	slug: string;
@@ -15,3 +15,5 @@ export type Game = {
 	rating_top: number;
 	publishers: Publisher[];
 };
+
+export default Game;
