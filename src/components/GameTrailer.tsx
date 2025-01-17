@@ -1,20 +1,18 @@
-import useTrailers from '@/hooks/useTrailers';
-import Spinner from './Spinner';
+import useTrailers from '../hooks/useTrailers';
 
-type GameTrailerProps = {
+interface GameTrailerProps {
 	gameId: number;
-};
+}
 
 const GameTrailer = ({ gameId }: GameTrailerProps) => {
-	const { data: trailers, isLoading, error } = useTrailers(gameId);
+	const { data, error, isLoading } = useTrailers(gameId);
 
-	const firstItem = trailers?.results?.[0];
-
-	if (isLoading) return <Spinner />;
+	if (isLoading) return null;
 
 	if (error) throw error;
 
-	return firstItem ? <video controls src={firstItem.data[480]} poster={firstItem.preview} /> : null;
+	const first = data?.results?.[0];
+	return first ? <video src={first.data[480]} poster={first.preview} controls /> : null;
 };
 
 export default GameTrailer;
